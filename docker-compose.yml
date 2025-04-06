@@ -7,6 +7,17 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
-
+  api:
+      build: ./api
+      depends_on:
+        - database
+      environment:
+        FLASK_ENV: development
+        DATABASE_URL: postgresql://postgres:postgres@database:5432/blogdb
+      ports:
+        - "5000:5000"
+      volumes:
+        - ./api:/api
+      working_dir: /api
 volumes:
   pgdata:
