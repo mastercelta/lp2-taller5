@@ -4,13 +4,19 @@ Este taller práctico te guiará en el desarrollo de un sitio web tipo **Blog**,
 
 ![commits](https://badgen.net/github/commits/UR-CC/lp2-taller5?icon=github) 
 ![last_commit](https://img.shields.io/github/last-commit/UR-CC/lp2-taller5)
+![language](https://img.shields.io/badge/language-Python-blue.svg)
+![Python](https://img.shields.io/badge/Python-v3.10.12-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-v2.3.2-blue.svg)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v15.4-blue.svg)
+![Nginx](https://img.shields.io/badge/Nginx-v1.24.0-blue.svg)
+![Docker](https://img.shields.io/badge/Docker-v24.0.6-blue.svg) 
 
 - ver [badgen](https://badgen.net/) o [shields](https://shields.io/) para otros tipos de _badges_
 
 ## Autores
 
-- [@estudiante1](https://www.github.com/estudiante1)
-- [@estudiante2](https://www.github.com/estudiante2)
+- Juan Camilo Peñaloza [@mastercelta](https://www.github.com/mastercelta)
+- Cristian David [@CrysisDavid](https://www.github.com/CrysisDavid)
 
 ## Descripción del Proyecto
 
