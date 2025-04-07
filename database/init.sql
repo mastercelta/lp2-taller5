@@ -68,9 +68,9 @@ VALUES (
         NOW()
     ),
     (
-        'CrysisDavid',
-        'Cristian David',
-        'davidsoliss123@gmail.com',
+        'Mastercelta',
+        'Juan Camilo Peñaloza',
+        'juancamilo@bees.com.co',
         'password789',
         NOW()
     );
