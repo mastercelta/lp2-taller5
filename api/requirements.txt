@@ -1,5 +1,8 @@
-Flask
-Flask_SQLAlchemy
+fastapi
+uvicorn[standard]
+sqlalchemy
 psycopg2-binary
-Flask-Cors
+pydantic
 python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]

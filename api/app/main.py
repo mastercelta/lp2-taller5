@@ -1,13 +1,17 @@
-# api/app/main.py
-from flask import Flask, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI
+import uvicorn
+from app.routers import users
+from app.routers import auth
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI()
 
-@app.route('/')
-def index():
-    return jsonify({"message": "API Flask is running!"})
+app.include_router(users.router)
+app.include_router(auth.router)
+
+@app.get("/")
+def root():
+    return {"message": "API FastAPI corriendo directamente con uvicorn.run() 🚀"}
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

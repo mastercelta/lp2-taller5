@@ -15,7 +15,7 @@ services:
         FLASK_ENV: development
         DATABASE_URL: postgresql://postgres:postgres@database:5432/blogdb
       ports:
-        - "5000:5000"
+        - "8000:8000"
       volumes:
         - ./api:/api
       working_dir: /api
