@@ -8,7 +8,7 @@ const NavBar = ({props}) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <a className="navbar-brand" href="#!">
-            Start Bootstrap
+            Blog
           </a>
           <button
             className="navbar-toggler"
@@ -25,17 +25,12 @@ const NavBar = ({props}) => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Home
+                  Inicio
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#!">
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#!">
-                  Contact
+                  Acerca
                 </a>
               </li>
               <li className="nav-item">

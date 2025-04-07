@@ -8,7 +8,7 @@ const Header = ({props}) => {
           <div className="text-center my-5">
             <h1 className="fw-bolder">Welcome to Blog Home!</h1>
             <p className="lead mb-0">
-              A Bootstrap 5 starter layout for your next blog homepage
+              Blog Martecelta CrysisDavid 
             </p>
           </div>
         </div>

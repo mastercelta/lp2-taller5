@@ -22,7 +22,7 @@ const Post = ({props}) => {
                 Reiciendis aliquid atque, nulla.
               </p>
               <a className="btn btn-primary" href="#!">
-                Read more →
+                Leer more →
               </a>
             </div>
           </div>

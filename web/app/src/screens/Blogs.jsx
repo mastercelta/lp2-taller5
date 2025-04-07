@@ -1,8 +1,8 @@
-import NavBar from "./components/NavBar";
-import Header from "./components/Header";
-import Post from "./components/Post";
+import NavBar from "../components/NavBar";
+import Header from "../components/Header";
+import Post from "../components/Post";
 
-function App() {
+function Blogs() {
   return (
     <main>
       <NavBar />
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default Blogs;

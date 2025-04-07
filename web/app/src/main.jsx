@@ -1,10 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import {createRoot} from "react-dom/client";
+import {BrowserRouter, Routes, Route} from "react-router";
 import "./styles.css";
-import App from './App.jsx'
+import "./screens/styles/login.css";
+import Blogs from "./screens/Blogs.jsx";
+import Login from "./screens/Login.jsx";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="login" element={<Login />} />
+      <Route path="blog" element={<Blogs />} />
+    </Routes>
+  </BrowserRouter>,
+);
