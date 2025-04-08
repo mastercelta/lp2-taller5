@@ -16,25 +16,34 @@ const Login = (props) => {
   };
   const {loading, error, data, login} = useLogin(url);
 
-  const submit = () => {
+  const submit = async () => {
     login(userData);
-    console.log(data);
   };
   return (
     <div className="input-container">
-      <TextInput
-        onChange={(e) => setEmail(e.target.value)}
-        styles={"login-input"}
-        placeholder="email"
-        type="text"
-      />
-      <TextInput
-        onChange={(e) => setPassword(e.target.value)}
-        styles={"login-input"}
-        placeholder="password"
-        type="password"
-      />
-      <Button onClick={submit} styles={"login-button"} title="login" />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
+        <TextInput
+          onChange={(e) => setEmail(e.target.value)}
+          styles={"login-input"}
+          placeholder="email"
+          type="text"
+          required
+        />
+        <TextInput
+          onChange={(e) => setPassword(e.target.value)}
+          styles={"login-input"}
+          placeholder="password"
+          type="password"
+          required
+        />
+        <Button styles={"login-button"} type={"submit"} title="Login" />
+      </form>
+      {error && <strong>{error}</strong>}
     </div>
   );
 };

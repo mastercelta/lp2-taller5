@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/prop-types
-const Button = ({title, onClick, styles}) => {
+const Button = ({title, onClick, styles, type}) => {
   return (
     <div>
-      <button className={styles} onClick={onClick}>
+      <button type={type} className={styles} onClick={onClick}>
         <span>{title}</span>
       </button>
     </div>
@@ -14,7 +14,7 @@ const Button = ({title, onClick, styles}) => {
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Button;

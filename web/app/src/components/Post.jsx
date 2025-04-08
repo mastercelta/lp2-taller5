@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Pagination from "./Pagination";
 
 const Post = ({props}) => {
   return (
-    <div className="col-lg-8">
+    <>
       <div className="row">
         <div className="col-lg-6">
           <div className="card mb-4">
@@ -28,7 +29,8 @@ const Post = ({props}) => {
           </div>
         </div>
       </div>
-    </div>
+      
+    </>
   );
 };
 

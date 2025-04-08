@@ -15,15 +15,19 @@ function useLogin(url) {
         setError(null)
         try {
             const resp = await axios.post(url, data);
-            setData(resp.data)
+            setData(resp.data);
+
             navigate("/blog");
 
-            let { token } = resp.data["access_token"];
+            let token = resp.data.access_token;
+            let user = resp.data.user;
+            localStorage.setItem('user', JSON.stringify(user))
             localStorage.setItem('token', JSON.stringify(token))
+
         }
         catch (err) {
-            // console.log({ error: err })
-            setError(err)
+            console.log(err.response.data.detail)
+            setError(err.response.data.detail)
             setLoading(false)
         }
         finally {
