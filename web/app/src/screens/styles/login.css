@@ -1,0 +1,81 @@
+.login-input {
+  width: 50vh;
+  height: 45px;
+  background-color: rgb(255, 255, 255);
+  border-width: 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: rgb(196, 194, 194);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: larger;
+  text-indent: 2%;
+}
+.login-button {
+  width: 22vh;
+  border-radius: 5px;
+}
+.input-container {
+  justify-items: center;
+  display: grid;
+  align-items: center;
+  margin-top: 15%;
+}
+
+.login-button {
+  border-radius: 5px;
+  display: block;
+  background-color: #bdcdddfb;
+  width: 50.5vh;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #03030339;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+}
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-button span {
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+.login-button:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #75d2eb;
+  transition: all 0.35s;
+  border-radius: 2px;
+}
+
+.login-button:hover {
+  color: #ffffff;
+}
+
+.login-button:active {
+  transform: scale(0.95);
+}
+
+.login-button:hover:after {
+  width: 100%;
+}
