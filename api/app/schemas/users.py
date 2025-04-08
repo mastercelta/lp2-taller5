@@ -1,13 +1,26 @@
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
+from typing import Optional
+
 
 class UserBase(BaseModel):
     usuario: str
     nombre: str
     email: str
-    fecha_creacion: datetime
+
 
 class UserResponse(UserBase):
     id: int
-
+    fecha_creacion: datetime
     model_config = ConfigDict(from_attributes=True)
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class UserUpdate(BaseModel):
+    usuario: Optional[str] = None
+    nombre: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None

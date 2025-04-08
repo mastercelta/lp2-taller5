@@ -4,11 +4,15 @@ from app.routers import users
 from app.routers import auth
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(
+    title="Blog API",
+    description="API para autenticación, usuarios y publicaciones",
+    version="1.0.0",
+)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -16,6 +20,7 @@ app.add_middleware(
 
 app.include_router(users.router)
 app.include_router(auth.router)
+
 
 @app.get("/")
 def root():
