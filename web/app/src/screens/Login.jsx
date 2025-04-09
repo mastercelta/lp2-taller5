@@ -20,30 +20,35 @@ const Login = (props) => {
     login(userData);
   };
   return (
-    <div className="input-container">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-      >
-        <TextInput
-          onChange={(e) => setEmail(e.target.value)}
-          styles={"login-input"}
-          placeholder="email"
-          type="text"
-          required
-        />
-        <TextInput
-          onChange={(e) => setPassword(e.target.value)}
-          styles={"login-input"}
-          placeholder="password"
-          type="password"
-          required
-        />
-        <Button styles={"login-button"} type={"submit"} title="Login" />
-      </form>
-      {error && <strong>{error}</strong>}
+    <div className="register-container">
+      <div className="form-card">
+        <div className="form-header">
+          <h2>Iniciar sesión</h2>
+        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submit();
+          }}
+        >
+          <TextInput
+            onChange={(e) => setEmail(e.target.value)}
+            styles={"login-input"}
+            placeholder="correo"
+            type="text"
+            required
+          />
+          <TextInput
+            onChange={(e) => setPassword(e.target.value)}
+            styles={"login-input"}
+            placeholder="contraseña"
+            type="password"
+            required
+          />
+          <Button styles={"login-button"} type={"submit"} title="Acceder" />
+        </form>
+        {error && <strong>{error}</strong>}
+      </div>
     </div>
   );
 };
