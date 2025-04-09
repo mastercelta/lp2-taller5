@@ -10,12 +10,12 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 @router.get("/", response_model=list[UserResponse] | UserResponse)
 def get_users(
-    id: int = Query(None),
+    user_id: int = Query(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    if id:
-        user = db.query(User).get(id)
+    if user_id:
+        user = db.query(User).get(user_id)
         if not user:
             raise HTTPException(status_code=404, detail="Usuario no encontrado")
         return user
