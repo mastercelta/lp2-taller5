@@ -23,16 +23,20 @@ services:
   
   react-app:
     build: ./web/app
-    ports:
-      - "5173:5173"
+    # no se publica, solo se usa para construir
     volumes:
-      - ./web:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - react-build:/app/dist 
     depends_on:
       - api
-      - database
-
+  proxy:
+    build: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+      - react-app
+    volumes:
+      - react-build:/usr/share/nginx/html:ro 
 volumes:
   pgdata:
+  react-build:

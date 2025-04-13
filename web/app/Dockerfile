@@ -1,14 +1,9 @@
-# Dockerfile
-FROM node:18-alpine
+FROM node:slim
 
-WORKDIR /src
+WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install
 
 COPY . .
-
-EXPOSE 5173
-
-CMD ["npm", "run", "dev", "--", "--host"]
+RUN npm run build
