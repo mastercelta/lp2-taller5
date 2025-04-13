@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.schemas.login import LoginRequest, LoginResponse
 from app.models.users import User
 from app.deps import get_db
-from app.utils.auth import verify_password, create_access_token
+from app.utils.auth import verify_password, create_access_token, get_password_hash
 
 router = APIRouter(tags=["auth"])
 
@@ -13,11 +13,11 @@ router = APIRouter(tags=["auth"])
 def login(request: LoginRequest, db: Session = Depends(get_db)):
     user = (
         db.query(User)
-        .filter(User.email == request.email, User.password == request.password)
+        .filter(User.email == request.email)
         .first()
     )
 
-    if not user:  # or not verify_password(request.password, user.password):
+    if not user or not verify_password(request.password, user.password):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
 
     token = create_access_token(data={"sub": str(user.id)})
@@ -32,12 +32,11 @@ def login_form(
         db.query(User)
         .filter(
             User.email == form_data.username,
-            User.password == form_data.password,
         )
         .first()
     )
-
-    if not user:
+    
+    if not user or not verify_password(form_data.password, user.password):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
 
     token = create_access_token(data={"sub": str(user.id)})

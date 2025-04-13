@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS publicaciones (
 DROP TABLE IF EXISTS comentarios;
 
 CREATE TABLE IF NOT EXISTS comentarios (
+    id SERIAL PRIMARY KEY,
     comentario VARCHAR(2083) NOT NULL,
     id_publicacion INT REFERENCES publicaciones (id),
     id_usuario INT REFERENCES usuarios (id) ON DELETE SET NULL,
@@ -43,35 +44,35 @@ VALUES (
         'jdoe',
         'John Doe',
         'jdoe@example.com',
-        'password123',
+        '$2b$12$BWICxpbxqTHX3erEDgUWXeB.u8NFlFJrsyhRumSqB8oAdmb3FHuHG',
         NOW()
     ),
     (
         'asmith',
         'Alice Smith',
         'asmith@example.com',
-        'password456',
+        '$2b$12$BWICxpbxqTHX3erEDgUWXeB.u8NFlFJrsyhRumSqB8oAdmb3FHuHG',
         NOW()
     ),
     (
         'bwayne',
         'Bruce Wayne',
         'bwayne@example.com',
-        'password789',
+        '$2b$12$BWICxpbxqTHX3erEDgUWXeB.u8NFlFJrsyhRumSqB8oAdmb3FHuHG',
         NOW()
     ),
     (
         'CrysisDavid',
         'Cristian David',
         'davidsoliss123@gmail.com',
-        'password789',
+        '$2b$12$BWICxpbxqTHX3erEDgUWXeB.u8NFlFJrsyhRumSqB8oAdmb3FHuHG',
         NOW()
     ),
     (
         'Mastercelta',
         'Juan Camilo Peñaloza',
         'juancamilo@bees.com.co',
-        'password789',
+        '$2b$12$BWICxpbxqTHX3erEDgUWXeB.u8NFlFJrsyhRumSqB8oAdmb3FHuHG',
         NOW()
     );
 
@@ -227,85 +228,85 @@ VALUES (
     ),
     (
         'No estoy de acuerdo con algunos puntos, pero es interesante.',
-        5,
+        1,
         3,
         NOW()
     ),
     (
         '¡Excelente trabajo! Espero más publicaciones como esta.',
-        6,
+        1,
         1,
         NOW()
     ),
     (
         'Esto me ayudó mucho, gracias.',
-        7,
+        2,
         3,
         NOW()
     ),
     (
         '¿Podrías profundizar más en este tema?',
-        8,
+        2,
         1,
         NOW()
     ),
     (
         'Muy bien explicado, gracias.',
-        9,
+        3,
         2,
         NOW()
     ),
     (
         'Esto es justo lo que estaba buscando.',
-        10,
+        3,
         3,
         NOW()
     ),
     (
         '¡Qué gran aporte! Sigue así.',
-        11,
+        4,
         1,
         NOW()
     ),
     (
         'Me gustaría saber más sobre este tema.',
-        12,
+        4,
         2,
         NOW()
     ),
     (
         'Gracias por compartir esta información.',
-        13,
+        1,
         3,
         NOW()
     ),
     (
         'Muy interesante, espero más publicaciones como esta.',
-        14,
+        1,
         1,
         NOW()
     ),
     (
         'Esto es muy útil, gracias.',
-        15,
+        4,
         2,
         NOW()
     ),
     (
         '¡Gran publicación! Me encantó.',
-        16,
+        2,
         3,
         NOW()
     ),
     (
         'Espero que sigas publicando contenido como este.',
-        17,
+        3,
         1,
         NOW()
     ),
     (
         'Esto me hizo reflexionar, gracias.',
-        18,
+        2,
         2,
         NOW()
     );
