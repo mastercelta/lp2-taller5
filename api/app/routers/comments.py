@@ -10,6 +10,10 @@ router = APIRouter(prefix="/comments", tags=["comments"])
 @router.get("/", response_model=list[CommentResponse] | CommentResponse)
 def get_comments(
     comment_id: int = Query(None),
+    post_id: int = Query(None),
+    user_id: int = Query(None),
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, le=100),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -18,7 +22,18 @@ def get_comments(
         if not comment:
             raise HTTPException(status_code=404, detail="Comentario no encontrado")
         return comment
-    return db.query(Comment).all()
+    
+    offset = (page - 1) * limit
+    
+    query = db.query(Comment)
+    
+    if user_id:
+        query = query.filter(Comment.id_usuario == user_id)
+
+    if post_id:
+        query = query.filter(Comment.id_publicacion == post_id)
+
+    return query.offset(offset).limit(limit).all()
 
 @router.post("/", response_model=CommentResponse)
 def create_comment(comment: CommentCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
