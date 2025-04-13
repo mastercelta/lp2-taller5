@@ -10,16 +10,26 @@ router = APIRouter(prefix="/posts", tags=["posts"])
 
 @router.get("/", response_model=list[PostResponse] | PostResponse)
 def get_posts(
-    comment_id: int = Query(None),
+    post_id: int = Query(None),
+    user_id: int = Query(None),
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, le=100),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    if comment_id:
-        comment = db.query(Post).get(comment_id)
-        if not comment:
+    if post_id:
+        post = db.query(Post).get(post_id)
+        if not post:
             raise HTTPException(status_code=404, detail="Comentario no encontrado")
-        return comment
-    return db.query(Post).all()
+        return post
+    
+    offset = (page - 1) * limit
+    query = db.query(Post)
+    
+    if user_id:
+        query = query.filter(Post.id_usuario == user_id)
+
+    return query.offset(offset).limit(limit).all()
 
 
 @router.post("/", response_model=PostResponse)
