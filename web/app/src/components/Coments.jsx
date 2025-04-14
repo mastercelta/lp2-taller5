@@ -22,11 +22,11 @@ const Comments = () => {
             <ComentForm />
           </form>
 
-          {data.length ? (
+          {Array.isArray(data) && data.length ? (
             data.map((comment) => (
               <div key={comment.id} className="d-flex">
                 <div className="ms-3">
-                  <div className="fw-bold"></div>
+                  <div className="fw-bold">{comment.nombre || "Anonymous"}</div>
                   {comment.comentario}
                 </div>
               </div>
@@ -34,8 +34,8 @@ const Comments = () => {
           ) : (
             <div className="d-flex">
               <div className="ms-3">
-                <div className="fw-bold">nombre</div>
-                {data.comentario}
+                <div className="fw-bold">{data?.nombre || "Anonymous"}</div>
+                {data?.comentario || "No comments available"}
               </div>
             </div>
           )}
