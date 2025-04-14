@@ -20,34 +20,50 @@ const Login = (props) => {
     login(userData);
   };
   return (
-    <div className="register-container">
-      <div className="form-card">
-        <div className="form-header">
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow" style={{ width: "400px" }}>
+        <div className="card-header text-center">
           <h2>Iniciar sesión</h2>
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            submit();
-          }}
-        >
-          <TextInput
-            onChange={(e) => setEmail(e.target.value)}
-            styles={"login-input"}
-            placeholder="correo"
-            type="text"
-            required
-          />
-          <TextInput
-            onChange={(e) => setPassword(e.target.value)}
-            styles={"login-input"}
-            placeholder="contraseña"
-            type="password"
-            required
-          />
-          <Button styles={"login-button"} type={"submit"} title="Acceder" />
-        </form>
-        {error && <strong>{error}</strong>}
+        <div className="card-body">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              submit();
+            }}
+          >
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Correo
+              </label>
+              <input
+                id="email"
+                type="text"
+                className="form-control"
+                placeholder="correo"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Contraseña
+              </label>
+              <input
+                id="password"
+                type="password"
+                className="form-control"
+                placeholder="contraseña"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+              Acceder
+            </button>
+          </form>
+          {error && <div className="alert alert-danger mt-3">{error}</div>}
+        </div>
       </div>
     </div>
   );

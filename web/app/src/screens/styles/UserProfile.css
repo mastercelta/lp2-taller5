@@ -1,0 +1,135 @@
+.user-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.user-profile-card-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 16px;
+}
+.user-profile-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  text-align: center;
+}
+
+
+.user-profile-header {
+  margin-bottom: 16px;
+}
+
+.user-profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.user-profile-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.user-profile-email {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 4px 0 16px;
+}
+
+.user-profile-body {
+  margin-bottom: 16px;
+}
+
+.user-profile-body h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.user-profile-body p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.user-profile-footer {
+  margin-top: 16px;
+  margin-left: 50%;
+}
+
+.edit-profile-button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-button {
+  border-radius: 5px;
+  display: block;
+  background-color: #bdcdddfb;
+  width: 50.5vh;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #03030339;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+}
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.edit-button span {
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+.edit-button:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #75d2eb;
+  transition: all 0.35s;
+  border-radius: 2px;
+}
+
+.edit-button:hover {
+  color: #ffffff;
+}
+
+.edit-button:active {
+  transform: scale(0.95);
+}
+
+.edit-button:hover:after {
+  width: 100%;
+}

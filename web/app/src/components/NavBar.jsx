@@ -1,15 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
+import {useNavigate} from "react-router";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
 const NavBar = ({user}) => {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <a className="navbar-brand" href="#!">
+        <div className="navbar-brand" href="#!">
           {user}
-        </a>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,17 +27,26 @@ const NavBar = ({user}) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Inicio
+              <a
+                className="nav-link active"
+                aria-current="page"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/profile");
+                }}
+              >
+                profile
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#!">
-                Acerca
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a
+                className="nav-link active"
+                aria-current="page"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/blog");
+                }}
+              >
                 Blog
               </a>
             </li>

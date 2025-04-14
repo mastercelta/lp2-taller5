@@ -1,9 +1,9 @@
 import {createRoot} from "react-dom/client";
 import {BrowserRouter, Routes, Route} from "react-router";
-import "./screens/styles/styles.css";
 import "./screens/styles/login.css";
 import "./screens/styles/postStyles.css";
 import "./screens/styles/Register.css";
+import "./screens/styles/UserProfile.css"; 
 
 import Blogs from "./screens/Blogs.jsx";
 import Login from "./screens/Login.jsx";
@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")).render(
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route path="blog" element={<Blogs />} />
-      <Route path="read_post" element={<ReadPost />} />
+      <Route path="read_post/:id" element={<ReadPost />} />
       <Route path="profile" element={<UserProfile />} />
     </Routes>
   </BrowserRouter>,

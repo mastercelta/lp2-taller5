@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TextInput = ({type, styles, placeholder, onChange}) => {
+const TextInput = ({type, styles, placeholder, onChange, value}) => {
   return (
     <div>
       <input
@@ -10,6 +10,7 @@ const TextInput = ({type, styles, placeholder, onChange}) => {
         placeholder={placeholder}
         className={styles}
         type={type}
+        value={value}
       />
     </div>
   );

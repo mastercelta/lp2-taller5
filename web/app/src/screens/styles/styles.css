@@ -68,7 +68,7 @@
   --bs-highlight-bg: #fff3cd;
 }
 body{
-  background-image: url('/lightimage.jpg');  
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
 }
 *,
 *::before,

@@ -31,9 +31,9 @@ export default function Register() {
   };
 
   return (
-    <div className="register-container">
-      <div className="form-card">
-        <div className="form-header">
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card shadow-lg p-4" style={{width: "30rem"}}>
+        <div className="card-header text-center">
           <h2>Crear una cuenta</h2>
         </div>
         <form
@@ -42,38 +42,68 @@ export default function Register() {
             createUser();
           }}
         >
-          <TextInput
-            onChange={(e) => setUsuario(e.target.value)}
-            styles={"login-input"}
-            placeholder="usuario"
-            type="text"
-            required
-          />
-          <TextInput
-            onChange={(e) => setNombre(e.target.value)}
-            styles={"login-input"}
-            placeholder="nombre"
-            type="text"
-            required
-          />
-          <TextInput
-            onChange={(e) => setEmail(e.target.value)}
-            styles={"login-input"}
-            placeholder="correo"
-            type="text"
-            required
-          />
-          <TextInput
-            onChange={(e) => setPassword(e.target.value)}
-            styles={"login-input"}
-            placeholder="contraseña"
-            type="password"
-            required
-          />
-          <Button styles={"login-button"} type={"submit"} title="Registrar" />
+          <div className="mb-3">
+            <label htmlFor="usuario" className="form-label">
+              Usuario
+            </label>
+            <input
+              id="usuario"
+              className="form-control"
+              type="text"
+              onChange={(e) => setUsuario(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="nombre" className="form-label">
+              Nombre
+            </label>
+            <input
+              id="nombre"
+              className="form-control"
+              type="text"
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Correo
+            </label>
+            <input
+              id="email"
+              className="form-control"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Contraseña
+            </label>
+            <input
+              id="password"
+              className="form-control"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="btn btn-primary w-100" type="submit">
+            Registrar
+          </button>
         </form>
-        {error && <strong>{"Verify your credentials"}</strong>}
-        {errorMessage && <strong>{errorMessage}</strong>}
+        {error && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Verifica tus credenciales
+          </div>
+        )}
+        {errorMessage && (
+          <div className="alert alert-danger mt-3" role="alert">
+            {errorMessage}
+          </div>
+        )}
       </div>
     </div>
   );
