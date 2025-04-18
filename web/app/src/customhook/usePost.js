@@ -1,25 +1,26 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import { useState } from 'react';
+import axios from 'axios';
 
-const usePost = (url, postData) => {
-    const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
+const usePost = (url) => {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const post = async () => {
-        setLoading(true)
+    const post = async (postData, options = {}) => {
+        setLoading(true);
+        setError(null); // Reset error before making a new request
         try {
-            const response = await axios.post(url, postData)
-            setData(response.data)
+            const response = await axios.post(url, postData, options);
+            setData(response.data);
         } catch (error) {
-            setError(error)
+            console.error('Error during POST request:', error);
+            setError(error.response ? error.response.data : error.message);
+        } finally {
+            setLoading(false);
         }
-        finally { 
-            setLoading(false)
-        }
-    }
+    };
 
-    return { data, error, loading, post }
+    return { data, error, loading, post };
+};
 
-}
-export default usePost
+export default usePost;

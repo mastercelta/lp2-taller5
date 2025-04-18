@@ -13,42 +13,56 @@ const UserProfile = () => {
 
   return (
     <>
-      <NavBar user={currentUser.nombre}/>
-      <div className="user-profile-container">
-        <div className="user-profile-card">
-          <form className="user-profile-card-form" action="">
-            <TextInput
-              styles={"login-input"}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              value={name}
-              placeholder={currentUser.nombre}
-            />
-            <TextInput
-              styles={"login-input"}
-              onChange={(e) => setUsuario(e.target.value)}
-              type="text"
-              value={usuario}
-              placeholder={currentUser.usuario}
-            />
-            <TextInput
-              styles={"login-input"}
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              value={email}
-              placeholder={currentUser.email}
-            />
-            <TextInput
-              styles={"login-input"}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={"nueva contraseña"}
-              type="password"
-              value={password}
-            />
-            <div className="user-profile-footer">
-              <Button styles={"edit-button"} type={"submit"} title="Editar" />
-            </div>
-          </form>
+      <NavBar user={currentUser.nombre} />
+      <div className="container mt-5">
+        <div className="card shadow-sm">
+          <div className="card-body">
+            <form>
+              <div className="mb-3">
+                <TextInput
+                  styles={"form-control"}
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
+                  value={name}
+                  placeholder={currentUser.nombre}
+                />
+              </div>
+              <div className="mb-3">
+                <TextInput
+                  styles={"form-control"}
+                  onChange={(e) => setUsuario(e.target.value)}
+                  type="text"
+                  value={usuario}
+                  placeholder={currentUser.usuario}
+                />
+              </div>
+              <div className="mb-3">
+                <TextInput
+                  styles={"form-control"}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  value={email}
+                  placeholder={currentUser.email}
+                />
+              </div>
+              <div className="mb-3">
+                <TextInput
+                  styles={"form-control"}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={"Nueva contraseña"}
+                  type="password"
+                  value={password}
+                />
+              </div>
+              <div className="d-flex justify-content-end">
+                <Button
+                  styles={"btn btn-primary"}
+                  type={"submit"}
+                  title="Editar"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>

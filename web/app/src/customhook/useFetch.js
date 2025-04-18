@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
+import { useEffect, useState } from "react";
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
-
 const useFetch = (url, options = {}, reload = false) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
@@ -13,7 +13,6 @@ const useFetch = (url, options = {}, reload = false) => {
             try {
                 const resp = await axios.get(url, { ...options })
                 setData(resp.data)
-                // console.log(resp.data)
             }
             catch (err) {
                 setError(err)
@@ -25,8 +24,7 @@ const useFetch = (url, options = {}, reload = false) => {
             }
         }
         fetchData()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [reload])
+    }, [url])
     return { data, loading, error }
 }
 export default useFetch

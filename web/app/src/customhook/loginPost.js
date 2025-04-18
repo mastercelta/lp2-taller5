@@ -17,12 +17,11 @@ function useLogin(url) {
             const resp = await axios.post(url, data);
             setData(resp.data);
 
-            navigate("/blog");
-
             let token = resp.data.access_token;
             let user = resp.data.user;
             localStorage.setItem('user', JSON.stringify(user))
             localStorage.setItem('token', JSON.stringify(token))
+            window.location.href = "/blog/page/1";
 
         }
         catch (err) {

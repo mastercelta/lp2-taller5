@@ -2,6 +2,8 @@
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router";
 import formattedDate from "../functions/formattedDate";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 /**
  * Post component to display a list of posts.
@@ -14,55 +16,53 @@ import formattedDate from "../functions/formattedDate";
  * @param {string} data[].contenido - Content of the post.
  */
 
-const Post = ({data}) => {
+const Post = ({data, lastElement}) => {
   const navigate = useNavigate();
-
-  const lastPost = data.length > 0 ? [data[data.length - 1]] : [];
-
-  // format dates
-
-  data.pop();
   return (
     <>
-      <div
+      {/* <div
         className="card mb-4"
-        onClick={() => navigate(`/read_post/${lastPost[0].id}`)}
+        onClick={() => navigate(`/read_post/${lastElement.id}`)}
       >
-        <a
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/read_post/${lastPost[0].id}`);
-          }}
-        >
-          <img
-            className="card-img-top-last"
-            src={lastPost[0]?.url_imagen || "default-image-url.jpg"}
-            alt="..."
-          />
-        </a>
-        <div className="card-body">
-          <div className="small text-muted">
-            {lastPost[0]
-              ? formattedDate(lastPost[0].fecha_creacion)
-              : "No date available"}
-          </div>
-          <h2 className="card-title">
-            {lastPost[0]?.titulo || "Untitled Post"}
-          </h2>
-          <p className="card-text">
-            {lastPost[0] ? lastPost[0].contenido : "No content available"}
-          </p>
+        {lastElement ? (
           <a
-            className="btn btn-primary"
             onClick={(e) => {
               e.stopPropagation();
-              navigate(`/read_post/${lastPost[0].id}`);
+              navigate(`/read_post/${lastElement.id}`);
             }}
           >
-            Read more →
+            <img
+              className="card-img-top-last"
+              src={lastElement?.url_imagen || "default-image-url.jpg"}
+              alt="Image post"
+            />
           </a>
+        ) : (
+          ""
+        )}
+        <div className="card-body">
+          <div className="small text-muted">
+            {lastElement ? formattedDate(lastElement.fecha_creacion) : ""}
+          </div>
+          <h2 className="card-title">{lastElement?.titulo || ""}</h2>
+          <ReactQuill readOnly={true} value={parseData[0]} theme="bubble" />
+
+          {lastElement ? (
+            <a
+              className="btn btn-primary"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/read_post/${lastElement.id}`);
+              }}
+            >
+              Read more →
+            </a>
+          ) : (
+            ""
+          )}
         </div>
-      </div>
+      </div> */}
+      {/* Render a grid of posts */}
       <div className="row">
         {data.map((p) => {
           return (
@@ -91,9 +91,32 @@ const Post = ({data}) => {
                   <h2 className="card-title h4">
                     {p.titulo || "Untitled Post"}
                   </h2>
-                  <p className="card-text">
-                    {p.contenido ? p.contenido : "No content available"}
-                  </p>
+                  {/* contenido */}
+                  {(() => {
+                    try {
+                      let parsedContent = JSON.parse(p.contenido);
+                      console.log(parsedContent)
+                      parsedContent =
+                        parsedContent.ops[0].insert.length > 100
+                          ? `${parsedContent.ops[0].insert.substring(
+                              0,
+                              100,
+                            )}...`
+                          : parsedContent.ops[0].insert;
+
+                      return (
+                        <div style={{marginLeft: -15}}>
+                          <ReactQuill
+                            readOnly={true}
+                            value={parsedContent}
+                            theme="bubble"
+                          />
+                        </div>
+                      );
+                    } catch (error) {
+                      return <p>{p.contenido}</p>;
+                    }
+                  })()}
                   <a
                     className="btn btn-primary"
                     onClick={(e) => {
@@ -115,6 +138,7 @@ const Post = ({data}) => {
 
 Post.propTypes = {
   data: PropTypes.array.isRequired,
+  lastElement: PropTypes.array.isRequired,
 };
 
 export default Post;

@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router";
+import {AuthContext} from "./AuthContext";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
 const NavBar = ({user}) => {
+  const {logout} = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -44,10 +46,15 @@ const NavBar = ({user}) => {
                 aria-current="page"
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigate("/blog");
+                  navigate("/blog/page/1");
                 }}
               >
                 Blog
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" onClick={logout}>
+                Cerrar sesión
               </a>
             </li>
           </ul>

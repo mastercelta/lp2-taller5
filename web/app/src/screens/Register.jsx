@@ -21,13 +21,13 @@ export default function Register() {
     password,
   };
 
-  const {data, loading, error, post} = usePost(URL, options);
+  const {data, loading, error, post} = usePost(URL);
 
   const createUser = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return setErrorMessage("Invalid email");
     }
-    post().then(() => navigate("/login"));
+    post(options).then(() => navigate("/login"));
   };
 
   return (

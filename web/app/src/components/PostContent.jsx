@@ -1,9 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PostHeader from "./PostHeader";
 import PropTypes from "prop-types";
 import formattedDate from "../functions/formattedDate";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const PostContent = ({data}) => {
+  let parseData = data.contenido ? JSON.parse(data.contenido) : "";
+
   return (
     <article>
       <PostHeader
@@ -21,18 +26,11 @@ const PostContent = ({data}) => {
         />
       </figure>
       <section className="mb-5">
-        <h2 className="fw-bolder mb-4 mt-5">
-          I have odd cosmic thoughts every day
-        </h2>
-        <p className="fs-5 mb-4">
-          {data.contenido ? data.contenido : "no content"}
-        </p>
+        <ReactQuill value={parseData} readOnly={true} theme="bubble" />
       </section>
     </article>
   );
 };
-PostContent.propTypes = {
-  
-};
+PostContent.propTypes = {};
 
 export default PostContent;

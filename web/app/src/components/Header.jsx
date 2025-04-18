@@ -6,7 +6,7 @@ const Header = ({props}) => {
     <header className="py-5 bg-light border-bottom mb-4">
       <div className="container">
         <div className="text-center my-5">
-          <h1 className="fw-bolder">InfoTecno</h1>
+          <h1 className="fw-bolder">diaro.dev</h1>
           <p className="lead mb-0">
             Lo más reciente en el desarrollo de software y tecnologías <br />
             Blog by Martecelta CrysisDavid
