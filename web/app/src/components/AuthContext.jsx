@@ -1,13 +1,14 @@
-import React, {createContext, useState, useEffect} from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    // Verifica si el token existe en localStorage
     const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
+    setIsAuthenticated(!!token); // Si el token existe, el usuario está autenticado
   }, []);
 
   const logout = () => {
@@ -17,7 +18,7 @@ export const AuthProvider = ({children}) => {
   };
 
   return (
-    <AuthContext.Provider value={{isAuthenticated, logout}}>
+    <AuthContext.Provider value={{ isAuthenticated, logout }}>
       {children}
     </AuthContext.Provider>
   );

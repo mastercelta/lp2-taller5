@@ -5,7 +5,7 @@ const ComentForm = ({comentario, setComentario}) => {
       <textarea
         className="form-control"
         rows="3"
-        placeholder="Leave a comment!"
+        placeholder="Deja un comentario!"
         value={comentario}
         onChange={(e) => setComentario(e.target.value)}
         required={true}

@@ -22,12 +22,13 @@ const CreatePost = () => {
 
   const {data, post} = usePost("http://localhost:8000/posts/");
 
+  console.log(contenido)
   const createPost = () => {
     if (quillRef.current) {
       const quill = quillRef.current.getEditor();
       const delta = quill.getContents();
       const contenidoDeltaJSON = JSON.stringify(delta);
-      console.log(contenidoDeltaJSON);
+      // console.log(contenidoDeltaJSON);
       post({titulo, contenido: contenidoDeltaJSON, url_imagen: url}, OPTIONS);
       NAVIGATE("/blog/page/1");
     }

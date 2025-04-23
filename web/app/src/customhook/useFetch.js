@@ -16,7 +16,7 @@ const useFetch = (url, options = {}, reload = false) => {
             }
             catch (err) {
                 setError(err)
-                console.log(err)
+                // console.log(err)
                 setLoading(false)
             }
             finally {
@@ -24,7 +24,7 @@ const useFetch = (url, options = {}, reload = false) => {
             }
         }
         fetchData()
-    }, [url])
+    }, [reload])
     return { data, loading, error }
 }
 export default useFetch

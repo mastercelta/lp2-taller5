@@ -1,14 +1,19 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from app.models.posts import Post
-from app.schemas.posts import PostCreate, PostUpdate, PostResponse
+from app.schemas.posts import (
+    PostCreate,
+    PostUpdate,
+    PostResponse,
+    PaginatedPostsResponse,
+)
 from app.deps import get_db, get_current_user
 from app.models.users import User
 
 router = APIRouter(prefix="/posts", tags=["posts"])
 
 
-@router.get("/", response_model=list[PostResponse] | PostResponse)
+@router.get("/", response_model=PaginatedPostsResponse | PostResponse)
 def get_posts(
     post_id: int = Query(None),
     user_id: int = Query(None),
@@ -20,16 +25,26 @@ def get_posts(
     if post_id:
         post = db.query(Post).get(post_id)
         if not post:
-            raise HTTPException(status_code=404, detail="Comentario no encontrado")
+            raise HTTPException(status_code=404, detail="Publicación no encontrada")
         return post
-    
+
     offset = (page - 1) * limit
     query = db.query(Post)
-    
+
     if user_id:
         query = query.filter(Post.id_usuario == user_id)
-
-    return query.offset(offset).limit(limit).all()
+    # Hice algunos modificaciones a esta ruta ya que necesitaba obtener la totalidad de páginas, e invertir el array de publicaciones
+    total_posts = query.count()
+    total_pages = (total_posts + limit - 1) // limit
+    posts = (
+        query.order_by(Post.id.desc()).offset(offset).limit(limit).all()
+    )  # modifiqué esta linea para devolver las publicaciones de forma descedente.
+    posts_response = [PostResponse.from_orm(post) for post in posts]
+    return {
+        "posts": posts_response,
+        "total_pages": total_pages,
+        "current_page": page,
+    }
 
 
 @router.post("/", response_model=PostResponse)

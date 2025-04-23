@@ -19,6 +19,11 @@ Este taller práctico te guiará en el desarrollo de un sitio web tipo **Blog**,
 - Juan Camilo Peñaloza [@mastercelta](https://www.github.com/mastercelta)
 - Cristian David [@CrysisDavid](https://www.github.com/CrysisDavid)
 
+## Instrucciones
+
+
+
+
 ## Descripción del Proyecto
 
 Este proyecto se centra en la construcción de un **Blog** moderno y escalable utilizando una arquitectura de microservicios. La aplicación se divide en cuatro componentes principales: una base de datos [PostgreSQL](https://www.postgresql.org/) para el almacenamiento persistente de datos, una API RESTful desarrollada con [FastAPI](https://fastapi.tiangolo.com/) para la comunicación entre los microservicios, una interfaz web creada con [React](https://es.react.dev/) para la interacción del usuario y un proxy inverso [Nginx](https://nginx.org/) para la gestión del tráfico y la mejora del rendimiento.

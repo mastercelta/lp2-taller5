@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import useLogin from "../customhook/loginPost.js";
+import { useNavigate } from "react-router";
 
 const Login = (props) => {
+  const NAVIGATE = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let url = "http://localhost:8000/login";
@@ -21,7 +23,7 @@ const Login = (props) => {
   };
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 shadow" style={{ width: "400px" }}>
+      <div className="card p-4 shadow" style={{width: "400px"}}>
         <div className="card-header text-center">
           <h2>Iniciar sesión</h2>
         </div>
@@ -63,6 +65,7 @@ const Login = (props) => {
             </button>
           </form>
           {error && <div className="alert alert-danger mt-3">{error}</div>}
+          <a  onClick={()=>NAVIGATE("/register")} className="btn btn-link w-100">Crear cuenta</a>
         </div>
       </div>
     </div>

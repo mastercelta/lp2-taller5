@@ -10,7 +10,7 @@ const NavBar = ({user}) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container">
         <div className="navbar-brand" href="#!">
           {user}
@@ -29,20 +29,20 @@ const NavBar = ({user}) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
-                className="nav-link active"
+              <button
+                className="btn btn-light me-2"
                 aria-current="page"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigate("/profile");
                 }}
               >
-                profile
-              </a>
+                Perfil
+              </button>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link active"
+              <button
+                className="btn btn-light me-2"
                 aria-current="page"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -50,12 +50,22 @@ const NavBar = ({user}) => {
                 }}
               >
                 Blog
-              </a>
+              </button>
+            </li>
+            <li>
+              <button
+                className="btn btn-primary me-2"
+                id="button-search"
+                type="button"
+                onClick={() => navigate("/new_post")}
+              >
+                Nueva publicación
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" onClick={logout}>
+              <button className="btn btn-danger" onClick={logout}>
                 Cerrar sesión
-              </a>
+              </button>
             </li>
           </ul>
         </div>

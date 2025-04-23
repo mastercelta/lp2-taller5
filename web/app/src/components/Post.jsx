@@ -20,7 +20,7 @@ const Post = ({data, lastElement}) => {
   const navigate = useNavigate();
   return (
     <>
-      {/* <div
+      <div
         className="card mb-4"
         onClick={() => navigate(`/read_post/${lastElement.id}`)}
       >
@@ -45,7 +45,7 @@ const Post = ({data, lastElement}) => {
             {lastElement ? formattedDate(lastElement.fecha_creacion) : ""}
           </div>
           <h2 className="card-title">{lastElement?.titulo || ""}</h2>
-          <ReactQuill readOnly={true} value={parseData[0]} theme="bubble" />
+          {/* <ReactQuill readOnly={true} value={parseData[0]} theme="bubble" /> */}
 
           {lastElement ? (
             <a
@@ -55,13 +55,13 @@ const Post = ({data, lastElement}) => {
                 navigate(`/read_post/${lastElement.id}`);
               }}
             >
-              Read more →
+              Leer →
             </a>
           ) : (
             ""
           )}
         </div>
-      </div> */}
+      </div>
       {/* Render a grid of posts */}
       <div className="row">
         {data.map((p) => {
@@ -95,7 +95,7 @@ const Post = ({data, lastElement}) => {
                   {(() => {
                     try {
                       let parsedContent = JSON.parse(p.contenido);
-                      console.log(parsedContent)
+                      // console.log(parsedContent)
                       parsedContent =
                         parsedContent.ops[0].insert.length > 100
                           ? `${parsedContent.ops[0].insert.substring(
@@ -124,7 +124,7 @@ const Post = ({data, lastElement}) => {
                       navigate(`/read_post/${p.id}`);
                     }}
                   >
-                    Read more →
+                    Leer →
                   </a>
                 </div>
               </div>

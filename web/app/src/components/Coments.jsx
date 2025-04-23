@@ -3,6 +3,7 @@ import ComentForm from "./ComentForm";
 import useFetch from "../customhook/useFetch";
 import usePost from "../customhook/usePost";
 import {useParams} from "react-router";
+import {MdOutlineRefresh} from "react-icons/md";
 
 const Comments = () => {
   const params = useParams();
@@ -12,19 +13,24 @@ const Comments = () => {
   const storedToken = JSON.parse(localStorage.getItem("token"));
 
   const [refetch, setRefetch] = useState(false);
-  
+
   const URL = "http://localhost:8000/comments/";
 
-    const [comentario, setComentario] = useState("");
+  const [comentario, setComentario] = useState("");
 
-    const {data: resp,error,loading,post,} = usePost("http://localhost:8000/comments/");
+  const {
+    data: resp,
+    error,
+    loading,
+    post,
+  } = usePost("http://localhost:8000/comments/");
 
   const OPTIONS = {
     headers: {Authorization: `Bearer ${storedToken}`},
     params: {post_id: POST_ID},
   };
 
-  const {data} = useFetch(URL, OPTIONS);
+  const {data} = useFetch(URL, OPTIONS, refetch);
 
   const [users, setUsers] = useState({});
 
@@ -51,7 +57,6 @@ const Comments = () => {
     }
   }, [data, storedToken, refetch]);
 
-
   const handleSubmit = () => {
     post(
       {comentario, id_publicacion: POST_ID},
@@ -59,6 +64,7 @@ const Comments = () => {
     );
     setComentario("");
     setRefetch(!refetch);
+    // window.location.reload();
   };
 
   return (
@@ -83,20 +89,34 @@ const Comments = () => {
                 borderRadius: "5px",
                 cursor: "pointer",
                 marginTop: "2%",
-                marginLeft: "85%",
                 height: "30px",
               }}
               disabled={loading}
             >
-              {loading ? "Posting..." : "Post"}
+              {loading ? "Comentando..." : "Comentar"}
             </button>
           </form>
+          <button
+            className="btn"
+            style={{marginTop: "-15%", marginLeft: "90%"}}
+          >
+            <MdOutlineRefresh size={25} onClick={() => setRefetch(!refetch)} />
+          </button>
           {error && <p style={{color: "red"}}>Error: {error.message}</p>}
-          {resp && <p style={{color: "green"}}>Comment posted successfully!</p>}
+          {/* {resp && <p style={{color: "green"}}>Comment posted successfully!</p>} */}
 
           {data.length ? (
             data.map((comment) => (
-              <div key={comment.id} className="d-flex">
+              <div
+                key={comment.id}
+                className="d-flex"
+                style={{
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  padding: "10px",
+                  marginBottom: "10px",
+                }}
+              >
                 <div className="ms-3">
                   <div className="fw-bold">
                     {users[comment.id_usuario] || "Cargando..."}

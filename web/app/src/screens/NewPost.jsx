@@ -9,7 +9,7 @@ const NewPost = () => {
   const [titulo, setTitulo] = useState("");
   const [contenido, setContenido] = useState("");
 
-  console.log(contenido);
+  // console.log(contenido);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const applyStyle = (style) => {

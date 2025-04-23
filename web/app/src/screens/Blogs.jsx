@@ -24,9 +24,11 @@ function Blogs() {
       Authorization: `Bearer ${storedToken}`,
     },
   };
+
   const {data, loading, error} = useFetch(URL, options);
-  const lastElement = data?.length > 0 ? data[data.length - 1] : null;
-  console.log(lastElement)
+
+  const lastElement = data.posts?.length > 0 ? data.posts[0] : null;
+  // console.log(lastElement)
 
   return (
     <main>
@@ -35,15 +37,26 @@ function Blogs() {
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
-            <Post data={data} lastElement={lastElement} />
+            {data.posts ? (
+              <Post data={data.posts} lastElement={lastElement} />
+            ) : (
+              <p>Loading posts...</p>
+            )}
             <nav aria-label="Pagination">
               <hr className="my-0" />
               <ul className="pagination justify-content-center my-4">
-                {[...Array(10)].map((_, index) => (
-                  <li key={index} className={"page-item"}>
+                {[...Array(data.total_pages)].map((_, index) => (
+                  <li
+                    key={index}
+                    className={`page-item ${
+                      page === index + 1 ? "active" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
-                      onClick={() => NAVIGATE(`/blog/page/${index + 1}`)}
+                      onClick={() =>
+                        (window.location.href = `/blog/page/${index + 1}`)
+                      }
                     >
                       {index + 1}
                     </button>
@@ -54,14 +67,6 @@ function Blogs() {
           </div>
           <div className="col-lg-4">
             <SearchBar />
-            <button
-              className="btn btn-primary"
-              id="button-search"
-              type="button"
-              onClick={() => NAVIGATE("/new_post")}
-            >
-              Create post
-            </button>
           </div>
         </div>
       </div>
