@@ -24,7 +24,7 @@ Este taller práctico te guiará en el desarrollo de un sitio web tipo **Blog**,
 1. Clonar el proyecto:
 
 ```bash
-git clone https://github.com/UR-CC/lp2-taller3.git
+git clone https://github.com/mastercelta/lp2-taller5.git
 ```
 
 2. Construir y levantar los servicios:
