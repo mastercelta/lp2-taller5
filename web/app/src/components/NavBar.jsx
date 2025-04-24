@@ -13,7 +13,7 @@ const NavBar = ({user}) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container">
         <div className="navbar-brand" href="#!">
-          {user}
+          <strong>{user}</strong>
         </div>
         <button
           className="navbar-toggler"
@@ -54,7 +54,7 @@ const NavBar = ({user}) => {
             </li>
             <li>
               <button
-                className="btn btn-primary me-2"
+                className="btn btn-warning me-2"
                 id="button-search"
                 type="button"
                 onClick={() => navigate("/new_post")}

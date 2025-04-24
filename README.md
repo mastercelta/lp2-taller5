@@ -19,10 +19,29 @@ Este taller práctico te guiará en el desarrollo de un sitio web tipo **Blog**,
 - Juan Camilo Peñaloza [@mastercelta](https://www.github.com/mastercelta)
 - Cristian David [@CrysisDavid](https://www.github.com/CrysisDavid)
 
-## Instrucciones
+## Instalación
 
+1. Clonar el proyecto:
 
+```bash
+git clone https://github.com/UR-CC/lp2-taller3.git
+```
 
+2. Construir y levantar los servicios:
+
+```bash
+docker-compose up --build
+```
+
+3. Ejecución del proyecto web
+
+```bash
+cd web/app
+npm install
+npm run dev
+```
+
+4. Desde el navegador, acceder a: [http://localhost](http://localhost:5173/)
 
 ## Descripción del Proyecto
 
