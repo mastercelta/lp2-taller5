@@ -41,6 +41,7 @@ def create_user(
 
 
 @router.put("/{user_id}", response_model=UserResponse)
+# The password's hashing is missing in this route
 def update_user(
     user_id: int,
     user: UserUpdate,

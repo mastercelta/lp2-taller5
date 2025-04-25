@@ -28,7 +28,7 @@ const ReadPost = ({props}) => {
   const {data, loading, error} = useFetch(URL, OPTIONS);
   return (
     <main>
-      <NavBar user={storedUser.nombre} />
+      <NavBar user={storedUser.usuario} />
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-8">

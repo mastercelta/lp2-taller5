@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+// eslint-disable-next-line react/prop-types
 const TextInput = ({type, styles, placeholder, onChange, value}) => {
   return (
     <div>
@@ -19,7 +20,6 @@ const TextInput = ({type, styles, placeholder, onChange, value}) => {
 TextInput.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  // required: PropTypes.bool,
   styles: PropTypes.string,
   onChange: PropTypes.func,
 };

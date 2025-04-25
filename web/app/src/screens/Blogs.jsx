@@ -32,7 +32,7 @@ function Blogs() {
 
   return (
     <main>
-      <NavBar user={storedUser.nombre} />
+      <NavBar user={storedUser.usuario} />
       <Header />
       <div className="container">
         <div className="row">

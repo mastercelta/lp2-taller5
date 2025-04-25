@@ -1,24 +1,31 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, {useState, useRef} from "react";
+import {useParams} from "react-router";
 import PostHeader from "./PostHeader";
 import PropTypes from "prop-types";
 import formattedDate from "../functions/formattedDate";
+import PopUp from "./PopUp";
 import ReactQuill from "react-quill";
-import {useParams} from "react-router";
+
+import Options from "../options";
 
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import usePut from "../customhook/usePut";
+import useDelete from "../customhook/useDelete";
 
 const PostContent = ({data}) => {
-  console.log(data)
+  console.log(data);
   const params = useParams();
   const POST_ID = params.id;
   let parseData = data.contenido ? JSON.parse(data.contenido) : "";
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = JSON.parse(localStorage.getItem("token"));
 
+  const options = new Options(storedToken);
+
+  const [showPopUp, setPopUp] = useState(false);
   const [edit, setEdit] = useState(true);
   let [contenido, setContenido] = useState(parseData);
   const [titulo, setTitulo] = useState("");
@@ -34,9 +41,11 @@ const PostContent = ({data}) => {
   };
   const handleChange = (value) => setContenido(value);
 
-  const edit_post_url = `http://localhost:8000/posts/${POST_ID}`;
+  const POST_URL = `http://localhost:8000/posts`;
 
-  const {error, loading, putRequest} = usePut(edit_post_url);
+  const {error, loading, putRequest} = usePut(POST_URL);
+
+  const {deleteData} = useDelete(POST_URL);
 
   const submitEdit = () => {
     if (quillRef.current) {
@@ -45,12 +54,18 @@ const PostContent = ({data}) => {
       const contenidoDeltaJSON = JSON.stringify(delta);
       console.log(contenidoDeltaJSON);
       putRequest(
+        POST_ID,
         {titulo, contenido: contenidoDeltaJSON, url_imagen: url},
-        {headers: {Authorization: `Bearer ${storedToken}`}},
+        options,
       );
-      setEdit(!edit)
+      setEdit(!edit);
       // NAVIGATE("/blog/page/1");
     }
+  };
+
+  const deletePost = () => {
+    deleteData(POST_ID, options);
+    window.location.href = "/blog/page/1";
   };
 
   return (
@@ -63,20 +78,32 @@ const PostContent = ({data}) => {
             type="button"
             onClick={editPost}
           >
-            {edit ? "Edit" : "Cancel"}
+            {edit ? "Editar" : "Cancelar"}
           </button>
           {!edit && (
-            <button
-              className="btn btn-success"
-              id="button-search"
-              type="button"
-              onClick={() => {
-                submitEdit();
-                window.location.reload(); // Refresh the window after submitting
-              }}
-            >
-              {loading ? "loading" : "post"}
-            </button>
+            <>
+              <button
+                className="btn btn-success"
+                id="button-search"
+                type="button"
+                onClick={() => {
+                  submitEdit();
+                  window.location.reload();
+                }}
+              >
+                {loading ? "loading" : "Publicar"}
+              </button>
+              <button
+                className="btn btn-danger"
+                id="button-search"
+                type="button"
+                onClick={() => {
+                  setPopUp(true);
+                }}
+              >
+                Eliminar
+              </button>
+            </>
           )}
         </>
       )}
@@ -154,6 +181,13 @@ const PostContent = ({data}) => {
           ]}
         />
       </section>
+      {showPopUp && (
+        <PopUp
+          onClose={() => setPopUp(false)}
+          onContinue={deletePost}
+          message="Está a punto de eliminar la publicación"
+        />
+      )}
     </article>
   );
 };

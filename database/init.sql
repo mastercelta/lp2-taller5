@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS comentarios (
     id SERIAL PRIMARY KEY,
     comentario VARCHAR(2083) NOT NULL,
     id_publicacion INT REFERENCES publicaciones (id),
-    id_usuario INT REFERENCES usuarios (id) ON DELETE SET NULL,
+    id_usuario INT REFERENCES usuarios (id) ON DELETE CASCADE,
     fecha_creacion timestamptz NOT NULL
 );
 

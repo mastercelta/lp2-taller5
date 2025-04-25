@@ -42,7 +42,7 @@ const CreatePost = () => {
 
   return (
     <main>
-      <NavBar user={currentUser?.nombre || "Usuario"} />
+      <NavBar user={currentUser?.usuario || "Usuario"} />
       <div className="create-post-container">
         {/* area de edicón */}
         <div className="container mt-5-create-post">

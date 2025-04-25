@@ -6,11 +6,11 @@ const usePut = (url) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const putRequest = async (payload, options = {}) => {
+    const putRequest = async (id, payload, options = {}) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.put(url, payload, options);
+            const response = await axios.put(`${url}/${id}`, payload, options);
             setData(response.data);
         } catch (err) {
             setError(err);
