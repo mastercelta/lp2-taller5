@@ -33,15 +33,7 @@ git clone https://github.com/mastercelta/lp2-taller5.git
 docker-compose up --build
 ```
 
-3. Ejecución del proyecto web
-
-```bash
-cd web/app
-npm install
-npm run dev
-```
-
-4. Desde el navegador, acceder a: [http://localhost](http://localhost:5173/)
+3. acceder a: [localhost](http://localhost/login)
 
 ## Descripción del Proyecto
 
