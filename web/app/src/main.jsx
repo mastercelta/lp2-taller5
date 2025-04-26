@@ -19,9 +19,30 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="blog/page/:page" element={<Blogs />} />
-        <Route path="read_post/:id" element={<ReadPost />} />
-        <Route path="profile" element={<UserProfile />} />
+        <Route
+          path="blog/page/:page"
+          element={
+            <PrivateRoute>
+              <Blogs />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="read_post/:id"
+          element={
+            <PrivateRoute>
+              <ReadPost />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="new_post"
           element={
